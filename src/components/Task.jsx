@@ -1,48 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { goalRef } from '../firebase';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
 
 class Task extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ''
+      title: '',
+      currentElevation: 0
     }
   }
-
-  addGoal () {
-    console.log('addGoal',this);
-    const {title} = this.state;
-    const {email} = this.props.user;
-    goalRef.push({email, title});
+  onHover() {
+    this.setState({currentElevation: 3});
+  }
+  hoverOut() {
+    this.setState({currentElevation: 0});
   }
   render() {
     return (
-      <div className="form-inline">
-        <div className="form-group">
-          <input
-            type="text"
-            placeholder="Add a Goal"
-            className="form-control"
-            style = {{marginRight: '5px'}}
-            onChange= {(event) => this.setState({title: event.target.value})}
-          />
-          <button
-            className="btn btn-success"
-            type="button"
-            onClick={() => this.addGoal()}
-          >
-            Submit
-          </button>
-        </div>
+      <div>
+        <Paper onMouseEnter={()=>this.onHover()} onMouseLeave={()=>this.hoverOut()} className={{}} elevation={this.state.currentElevation}>
+          <Typography variant="headline" component="h3">
+            This is a sheet of paper.
+          </Typography>
+          <Typography component="p">
+            Paper can be used to build surface or other elements for your application.
+          </Typography>
+        </Paper>
       </div>
     )
   }
 }
 function mapStateToProps(state) {
-  const { user } = state;
-  return {
-    user
-  }
+  return {};
 }
 export default connect(mapStateToProps,null)(Task);
