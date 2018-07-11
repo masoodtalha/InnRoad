@@ -1,25 +1,16 @@
-import { SIGNED_IN, SET_GOALS, SET_COMPLETED } from '../constants';
+import { LOAD_TASKS, POPULATE_TASKS } from '../constants';
 
-export function logUser(email) {
+export function populateTasks(taskList) {
   const action = {
-    type: SIGNED_IN,
-    email
+    type: POPULATE_TASKS,
+    taskList
   }
   return action;
 }
 
-export function setGoals(goals) {
-  const action = {
-    type: SET_GOALS,
-    goals
-  }
-  return action;
-}
-
-export function setCompleted(completeGoals) {
+export function loadTasks() {
   const action= {
-    type: SET_COMPLETED,
-    completeGoals
+    type: LOAD_TASKS
   }
   return action;
 }

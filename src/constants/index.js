@@ -1,3 +1,2 @@
-export const SIGNED_IN = 'SIGNED_IN';
-export const SET_GOALS = 'SET_GOALS';
-export const SET_COMPLETED = 'SET_COMPLETED';
+export const POPULATE_TASKS = 'POPULATE_TASKS';
+export const LOAD_TASKS = 'LOAD_TASKS';

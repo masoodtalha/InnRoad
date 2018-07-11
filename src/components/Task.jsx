@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { goalRef } from '../firebase';
 
-class AddGoal extends Component {
+class Task extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -45,4 +45,4 @@ function mapStateToProps(state) {
     user
   }
 }
-export default connect(mapStateToProps,null)(AddGoal);
+export default connect(mapStateToProps,null)(Task);
