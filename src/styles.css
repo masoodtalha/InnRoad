@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+  flex-direction: row; 
+  flex-wrap: wrap;
+}
+
+.column {
+  display: flex;
+  flex-direction: column; 
+  width: 250px; 
+  margin-right: 40px;
+  margin-bottom: 20px;
+}
+
+.paper {
+  margin-bottom: 10px;
+  padding: 5px;
+}
+
+.paper:hover {
+  box-shadow: 0 5px 5px rgba(0, 0, 0, 0.35);
+  transition: box-shadow 0.3s ease-in-out;
+  cursor: pointer;
+}
+
+.titleApp {
+  text-align: center;
+  background-color:white !important;
+  position: fixed;
+  width: 100%;
+  top: 0px;
+}

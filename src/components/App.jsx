@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../actions';
 import Task from './Task';
+import '../styles.css'
+
 class App extends Component {
 
   constructor(props) {
@@ -12,6 +14,7 @@ class App extends Component {
   render() {
     return (
       <div style={{ padding: '5px', backgroundColor: '#E0E0E0' }}>
+        <h1 className="titleApp">InnRoad</h1>
         <Task tasks={this.props.taskList}/>
       </div>
     )
