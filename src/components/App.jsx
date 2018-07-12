@@ -12,20 +12,12 @@ class App extends Component {
   render() {
     return (
       <div style={{ margin: '5px' }}>
-        <Task tasks={this.props.taskList} />
-        {this.props.taskList && this.props.taskList.map(data => {
-          return(
-            <div>
-              {data.Description}
-            </div>
-          )
-        })}
+        <Task tasks={this.props.taskList}/>
       </div>
     )
   }
 }
 function mapStateToProps (state) {
-  console.log("@@@@ State change: ", state.task);
   if (state.task.type === "START_LOAD_TASKS"){
     return {loading: true, taskList: []};
   } else if (state.task.type === "COMPLETED_LOAD_TASKS") {
@@ -35,7 +27,4 @@ function mapStateToProps (state) {
   }
   
 }
-
-
-
 export default connect(mapStateToProps, null)(App);

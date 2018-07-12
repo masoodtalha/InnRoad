@@ -11,11 +11,9 @@ export default class Task extends Component {
     }
 
     this.tasks = props.tasks ? props.tasks : [];
-    console.log("##### Props in task", this.tasks);
+    console.log("##### Props in task",props);
   }
-  componentWillUpdate() {
-    console.log("!!!!!!!!###### Updating: ", this.props.tasks);
-  }
+  
   onHover() {
     this.setState({currentElevation: 3});
   }
@@ -24,30 +22,51 @@ export default class Task extends Component {
   }
 
   populateData() {
-    const self = this;
-    return this.tasks.map((task) => {
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <h3>{task.Description}</h3>
+    const styles = {
+      row: {
+        display: 'flex', 
+        flexDirection: 'row', 
+        flexWrap: 'wrap'
+      },
+      column: { 
+        display: 'flex',
+        flexDirection: 'column',
+        width: '250px',
+        marginRight: '40px',
+        marginBottom: '20px'
+      }
+    };
 
-        {task.Items.map((item) => {
+    const self = this;
+    return (
+      <div style={styles.row}>
+        {this.props.tasks && this.props.tasks.map((task) => {
           return(
-            <Paper onMouseEnter={() => self.onHover()} onMouseLeave={() => self.hoverOut()} className={{}} elevation={this.state.currentElevation}>
-              <Typography variant="headline" component="h3">
-                {item.ItemTitle}
-              </Typography>
-              <Typography component="p">
-                {item.Description}
-              </Typography>
-            </Paper>
+            <div style= {styles.column}>
+              <h3>{task.Description}</h3>
+
+              {task.Items.map((item) => {
+              return (
+                <Paper onMouseEnter={() => self.onHover()} onMouseLeave={() => self.hoverOut()} className={{}} elevation={this.state.currentElevation}>
+                  <Typography variant="headline" component="h4">
+                    {item.ItemTitle}
+                  </Typography>
+                  <Typography component="p">
+                    {item.Description}
+                  </Typography>
+                </Paper>
+              )
+            })}
+            </div>
           )
         })}
       </div>
-    })
+    )
   }
 
   render() {
     return (
-      <div style={{display: 'flex', flexDirection: 'row'}}>
+      <div>
         {this.populateData()}
       </div>
     )
