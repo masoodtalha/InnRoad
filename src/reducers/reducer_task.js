@@ -1,33 +1,31 @@
-import {POPULATE_TASKS, LOAD_TASKS} from '../constants';
-import {serverUrl} from '../server';
+import {START_LOAD_TASKS, COMPLETED_LOAD_TASKS, POPULATE_TASKS} from '../constants';
 
-let tasks = [], taskRes = [];
+let tasks = [];
 
-export default async (state = tasks, action) => {
+export default  (state = tasks, action) => {
   switch (action.type) {
-    case POPULATE_TASKS:
-      const { taskList } = action;
-      taskList.forEach(task => {
-        let obj = {};
-        obj.BucketId = task.BucketId;
-        obj.Description = task.Description;
-        obj.OrderInVertical = task.OrderInVertical;
-        obj.Items = task.Items;
+    // case POPULATE_TASKS:
+    //   const { taskList } = action;
+    //   taskList.forEach(task => {
+    //     let obj = {};
+    //     obj.BucketId = task.BucketId;
+    //     obj.Description = task.Description;
+    //     obj.OrderInVertical = task.OrderInVertical;
+    //     obj.Items = task.Items;
 
-        tasks.push(obj);
-      });
-      return tasks;
-    case LOAD_TASKS:
-      await fetch(serverUrl).then(data => data.json())
-      .then(responseJson => {
-        taskRes = responseJson;
-        return taskRes;
-      }).catch(err => console.log("Data fetch Failure : ", err))
+    //     tasks.push(obj);
+    //   });
+    //   return tasks;
+    case START_LOAD_TASKS:
+      console.log("$$$$$ Reducer Obj: ", action);
+      return action;
 
-      console.log("Returning Data: ", taskRes)
-      return taskRes;
-      
+    case COMPLETED_LOAD_TASKS:
+      console.log("$$$$$ Reducer async action completed: ", action);
+      return action;
+
     default:
       return state;
   }
+
 }

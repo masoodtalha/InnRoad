@@ -1,46 +1,38 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../actions';
-
+import Task from './Task';
 class App extends Component {
 
   constructor(props) {
     super(props);
-    
-
     this.props.dispatch(loadTasks());
   }
-  componentWillUpdate() {
-    console.log(" &&&&Updated state: ", this.props.taskList);
-  }
+ 
   render() {
-    console.log("::::::", this.props.taskList);
-    const posts = this.props.taskList && this.props.taskList.map((post, i) => (
-      <li key={i}>
-        {post.content}
-      </li>
-    ));
-    const task = this.props.taskList;
-    console.log("####", task);
     return (
-      <div style={{margin: '5px'}}>
-        <ul>
-          {posts}
-        </ul>
+      <div style={{ margin: '5px' }}>
+        <Task tasks={this.props.taskList} />
+        {this.props.taskList && this.props.taskList.map(data => {
+          return(
+            <div>
+              {data.Description}
+            </div>
+          )
+        })}
       </div>
     )
   }
 }
 function mapStateToProps (state) {
-  let taskList = [];
-  console.log(";;;;;;;",state);
-  taskList = state.task;
-  // await state.task.then(data => {
-  //   taskList = data;
-  // })
-  console.log("^^^ Task List: ", taskList);
-  console.log("^^^ Task List: ", typeof(taskList));
-  return {taskList};
+  console.log("@@@@ State change: ", state.task);
+  if (state.task.type === "START_LOAD_TASKS"){
+    return {loading: true, taskList: []};
+  } else if (state.task.type === "COMPLETED_LOAD_TASKS") {
+    return { loading: false, taskList: state.task.payload}
+  }else{
+    return{};
+  }
   
 }
 
