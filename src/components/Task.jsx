@@ -34,6 +34,10 @@ export default class Task extends Component {
         width: '250px',
         marginRight: '40px',
         marginBottom: '20px'
+      },
+      paperMargin: {
+        marginBottom: '10px',
+        padding: '5px'
       }
     };
 
@@ -47,7 +51,7 @@ export default class Task extends Component {
 
               {task.Items.map((item) => {
               return (
-                <Paper onMouseEnter={() => self.onHover()} onMouseLeave={() => self.hoverOut()} className={{}} elevation={this.state.currentElevation}>
+                <Paper style={styles.paperMargin} onMouseEnter={() => self.onHover()} onMouseLeave={() => self.hoverOut()}  elevation={this.state.currentElevation}>
                   <Typography variant="headline" component="h4">
                     {item.ItemTitle}
                   </Typography>

@@ -11,7 +11,7 @@ class App extends Component {
  
   render() {
     return (
-      <div style={{ margin: '5px' }}>
+      <div style={{ padding: '5px', backgroundColor: '#E0E0E0' }}>
         <Task tasks={this.props.taskList}/>
       </div>
     )
