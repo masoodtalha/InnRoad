@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadTasks } from '../actions';
 import Task from './Task';
-import '../styles.css'
+import '../styles.css';
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 class App extends Component {
 
@@ -14,7 +15,11 @@ class App extends Component {
   render() {
     return (
       <div style={{ padding: '5px', backgroundColor: '#E0E0E0' }}>
-        <h1 className="titleApp">InnRoad</h1>
+        
+        <div className="titleApp">
+          {this.props.loading && <div style={{ display: 'inline' }}><CircularProgress color="secondary" /> </div>}
+          <h1 style={{ display: 'inline' }}>InnRoad</h1>
+        </div>
         <Task tasks={this.props.taskList}/>
       </div>
     )

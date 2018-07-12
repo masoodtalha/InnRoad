@@ -27,14 +27,14 @@ export default class Task extends Component {
     const self = this;
     return (
       <div className="row">
-        {this.props.tasks && this.props.tasks.map((task) => {
+        {this.props.tasks && this.props.tasks.map((task, i) => {
           return(
-            <div className="column">
+            <div className="column" key={i}>
               <h3>{task.Description}</h3>
 
-              {task.Items.map((item) => {
+              {task.Items.map((item, index) => {
               return (
-                <Paper className="paper">
+                <Paper className="paper" key={index}>
                   <Typography variant="headline" component="h4">
                     {item.ItemTitle}
                   </Typography>
